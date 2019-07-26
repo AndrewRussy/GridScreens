@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Dimensions, StyleSheet, Image, TouchableOpacity, Text, TextInput, Keyboard, Animated, UIManager, Platform, ScrollView } from 'react-native';
+import { View, Dimensions, StyleSheet, Image, TouchableOpacity, Text, FlatList, Keyboard, Animated, UIManager, Platform, ScrollView } from 'react-native';
 
 import { Actions } from 'react-native-router-flux';
 
@@ -8,139 +8,83 @@ class First extends Component {
   constructor() {
     super();
     this.state = {
+      section1_images: [
+        require('../imgs/first/section1/image1.png'),
+        require('../imgs/first/section1/image2.png'),
+        require('../imgs/first/section1/image3.png'),
+        require('../imgs/first/section1/image1.png'),
+        require('../imgs/first/section1/image2.png'),
+        require('../imgs/first/section1/image3.png')
+      ],
+      demoData: [
+        {
+          group: 0, height: 221,
+          images:[
+            require('../imgs/first/section2/demo1/demo1-1.png'),
+            require('../imgs/first/section2/demo1/demo1-2.png'),
+            require('../imgs/first/section2/demo1/demo1-3.png'),
+            require('../imgs/first/section2/demo1/demo1-4.png')
+          ]
+        },
+        {
+          group: 1, height: 173,
+          images:[
+            require('../imgs/first/section2/demo2/demo2-1.png'),
+            require('../imgs/first/section2/demo2/demo2-2.png')
+          ]
+        },
+        {
+          group: 2, height: 173,
+          images:[
+            require('../imgs/first/section2/demo3/demo3-1.png'),
+            require('../imgs/first/section2/demo3/demo3-2.png')
+          ]
+        },
+        {
+          group: 3, height: 173,
+          images:[
+            require('../imgs/first/section2/demo4/demo4-1.png'),
+            require('../imgs/first/section2/demo4/demo4-2.png')
+          ]
+        },
+      ]
     }
   }
 
   render() {
     return(
-      <ScrollView style={styles.container}>
-        <ScrollView
-          style={styles.section1}
-          horizontal={true}
-        >
-          <View style={styles.section1_image}>
-            <Image
-              style={{width: '100%', height: '100%'}}
-              source={require('../imgs/first/section1/image1.png')}
-            />
+      <View style={styles.container}>
+        <ScrollView>
+          <ScrollView
+            style={styles.section1}
+            horizontal={true}
+          >
+            {
+              this.state.section1_images.map((image, index) => {
+                return(
+                  <Image key={index} style={styles.section1_image} source={image} />
+                )
+              })
+            }
+          </ScrollView>
+          <View style={styles.section2}>
+            <View style={{width: '50%', paddingHorizontal: 10}}>
+              {
+                this.state.demoData.map((data, index) => {
+                  return index % 2 === 0 && this.customDemo(data)
+                })
+              }
+            </View>
+            <View style={{width: '50%', paddingHorizontal: 10}}>
+              {
+                this.state.demoData.map((data, index) => {
+                  return index % 2 === 1 && this.customDemo(data)
+                })
+              }
+            </View>
           </View>
-          <View style={styles.section1_image}>
-            <Image
-              style={{width: '100%', height: '100%'}}
-              source={require('../imgs/first/section1/image2.png')}
-            />
-          </View>
-          <View style={styles.section1_image}>
-            <Image
-              style={{width: '100%', height: '100%'}}
-              source={require('../imgs/first/section1/image3.png')}
-            />
-          </View>
-          <View style={styles.section1_image}>
-            <Image
-              style={{width: '100%', height: '100%'}}
-              source={require('../imgs/first/section1/image1.png')}
-            />
-          </View>
-          <View style={styles.section1_image}>
-            <Image
-              style={{width: '100%', height: '100%'}}
-              source={require('../imgs/first/section1/image2.png')}
-            />
-          </View>
-          <View style={styles.section1_image}>
-            <Image
-              style={{width: '100%', height: '100%'}}
-              source={require('../imgs/first/section1/image3.png')}
-            />
-          </View>
+          
         </ScrollView>
-        <View style={styles.section2}>
-          <View style={{width: '50%', paddingHorizontal: 10}}>
-            <View style={styles.demo1}>
-              <View style={styles.demo1_images}>
-                <View style={styles.demo1_image}>
-                  <Image
-                    style={{width: '100%', height: '100%'}}
-                    source={require('../imgs/first/section2/demo1/demo1-1.png')}
-                  />
-                </View>
-                <View style={styles.demo1_image}>
-                  <Image
-                    style={{width: '100%', height: '100%'}}
-                    source={require('../imgs/first/section2/demo1/demo1-2.png')}
-                  />
-                </View>
-                <View style={styles.demo1_image}>
-                  <Image
-                    style={{width: '100%', height: '100%'}}
-                    source={require('../imgs/first/section2/demo1/demo1-3.png')}
-                  />
-                </View>
-                <View style={styles.demo1_image}>
-                  <Image
-                    style={{width: '100%', height: '100%'}}
-                    source={require('../imgs/first/section2/demo1/demo1-4.png')}
-                  />
-                </View>
-              </View>
-              <Text style={styles.demo_text}>Demo1 😀</Text>
-            </View>
-            <View style={styles.demox}>
-              <View style={styles.demox_images}>
-                <View style={styles.demox_image}>
-                  <Image
-                    style={{width: '100%'}}
-                    source={require('../imgs/first/section2/demo3/demo3-1.png')}
-                  />
-                </View>
-                <View style={styles.demox_image}>
-                  <Image
-                    style={{width: '100%'}}
-                    source={require('../imgs/first/section2/demo3/demo3-2.png')}
-                  />
-                </View>
-              </View>
-              <Text style={styles.demo_text}>Demo3 😀</Text>
-            </View>
-          </View>
-          <View style={{width: '50%', paddingHorizontal: 10}}>
-            <View style={styles.demox}>
-              <View style={styles.demox_images}>
-                <View style={styles.demox_image}>
-                  <Image
-                    style={{width: '100%'}}
-                    source={require('../imgs/first/section2/demo2/demo2-1.png')}
-                  />
-                </View>
-                <View style={styles.demox_image}>
-                  <Image
-                    style={{width: '100%'}}
-                    source={require('../imgs/first/section2/demo2/demo2-2.png')}
-                  />
-                </View>
-              </View>
-              <Text style={styles.demo_text}>Demo2 😀</Text>
-            </View>
-            <View style={styles.demox}>
-              <View style={styles.demox_images}>
-                <View style={styles.demox_image}>
-                  <Image
-                    style={{width: '100%'}}
-                    source={require('../imgs/first/section2/demo4/demo4-1.png')}
-                  />
-                </View>
-                <View style={styles.demox_image}>
-                  <Image
-                    style={{width: '100%'}}
-                    source={require('../imgs/first/section2/demo4/demo4-2.png')}
-                  />
-                </View>
-              </View>
-              <Text style={styles.demo_text}>Demo4 😀</Text>
-            </View>
-          </View>
-        </View>
         <TouchableOpacity
           style={styles.pic_btn}
           onPress={() => Actions.second()}
@@ -149,7 +93,26 @@ class First extends Component {
             style={{width: '100%', height: '100%'}}
             source={require('../imgs/icons/pic_btn.png')} />
         </TouchableOpacity>
-      </ScrollView>
+      </View>
+    )
+  }
+
+  customDemo = (data) => {
+    return(
+      <View key={data.group} style={[styles.demo, {height: data.height}]}>
+        <View style={styles.demo_images}>
+          {
+            data.images.map((image, index) => {
+              return(
+                <View key={index} style={styles.demo_image}>
+                  <Image style={{width: '100%'}} source={image} />
+                </View>
+              )
+            })
+          }
+        </View>
+        <Text style={styles.demo_text}>Demo{data.group+1} 😀</Text>
+      </View>
     )
   }
 }
@@ -157,6 +120,7 @@ class First extends Component {
 const styles = StyleSheet.create({
   container: {
    flex: 1,
+   position: 'relative'
   },
   section1: {
     marginTop: 32,
@@ -171,35 +135,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingHorizontal: 10
   },
-  demo1: {
-    width: '100%',
-    height:221,
-    marginBottom: 20,
-    borderRadius: 10,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 10,
-    elevation: 9,
-    overflow: 'hidden',
-    backgroundColor: '#F9F7F7'
-  },
-  demo1_images: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-  },
   demo_text: {
     marginTop: 12,
     paddingHorizontal: 16,
     fontSize: 18,
     fontWeight: 'bold'
   },
-  demox: {
+  demo: {
     width: '100%',
-    height:173,
     marginBottom: 20,
     borderRadius: 10,
     shadowColor: '#000',
@@ -213,19 +156,17 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     backgroundColor: '#F9F7F7'
   },
-  demox_images: {
-    flexDirection: 'row'
+  demo_images: {
+    flexDirection: 'row',
+    flexWrap: 'wrap'
   },
-  demo1_image: {
-    width: '50%',
-    aspectRatio: 1
-  },
-  demox_image: {
+  demo_image: {
     width: '50%',
   },
   pic_btn: {
+    position: 'absolute',
+    bottom: 14,
     alignSelf: 'center',
-    marginVertical: 16,
     width: 64,
     height: 62
   }

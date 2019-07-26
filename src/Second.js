@@ -14,15 +14,34 @@ class Second extends Component {
   render() {
     return(
       <View style={styles.container}>
-        <View style={styles.section}>
-          <Image style={styles.section1_image} source={require('../imgs/second/image1.png')} />
+        <View>
+          <View style={styles.section}>
+            <Image style={styles.section1_image} source={require('../imgs/second/image1.png')} />
+          </View>
+          <View style={styles.section2}>
+            <Image style={styles.section2_image} source={require('../imgs/second/image2.png')} />
+            <Image style={styles.section2_image} source={require('../imgs/second/image3.png')} />
+          </View>
+          <View style={styles.section}>
+            <Image style={styles.section1_image} source={require('../imgs/second/image4.png')} />
+          </View>
         </View>
-        <View style={styles.section2}>
-          <Image style={styles.section2_image} source={require('../imgs/second/image2.png')} />
-          <Image style={styles.section2_image} source={require('../imgs/second/image3.png')} />
-        </View>
-        <View style={styles.section}>
-          <Image style={styles.section1_image} source={require('../imgs/second/image4.png')} />
+        <View style={styles.buttons}>
+          <View style={styles.button}>
+            <TouchableOpacity>
+              <Image source={require('../imgs/icons/microphone.png')} />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.button}>
+            <TouchableOpacity>
+              <Image source={require('../imgs/icons/video-camera.png')} />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.button}>
+            <TouchableOpacity onPress={() => Actions.pop()}>
+              <Image source={require('../imgs/icons/cancel.png')} />
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     )
@@ -49,6 +68,16 @@ const styles = StyleSheet.create({
   section2_image: {
     width: '50%',
     height: '100%'
+  },
+  buttons: {
+    position: 'absolute',
+    bottom: 16,
+    flexDirection: 'row',
+    width: '100%'
+  },
+  button: {
+    width: '33.33%',
+    alignItems: 'center'
   }
 });
 
