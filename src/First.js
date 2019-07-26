@@ -18,7 +18,7 @@ class First extends Component {
       ],
       demoData: [
         {
-          group: 0, height: 221,
+          group: 0,
           images:[
             require('../imgs/first/section2/demo1/demo1-1.png'),
             require('../imgs/first/section2/demo1/demo1-2.png'),
@@ -27,21 +27,21 @@ class First extends Component {
           ]
         },
         {
-          group: 1, height: 173,
+          group: 1,
           images:[
             require('../imgs/first/section2/demo2/demo2-1.png'),
             require('../imgs/first/section2/demo2/demo2-2.png')
           ]
         },
         {
-          group: 2, height: 173,
+          group: 2,
           images:[
             require('../imgs/first/section2/demo3/demo3-1.png'),
             require('../imgs/first/section2/demo3/demo3-2.png')
           ]
         },
         {
-          group: 3, height: 173,
+          group: 3,
           images:[
             require('../imgs/first/section2/demo4/demo4-1.png'),
             require('../imgs/first/section2/demo4/demo4-2.png')
@@ -99,7 +99,7 @@ class First extends Component {
 
   customDemo = (data) => {
     return(
-      <View key={data.group} style={[styles.demo, {height: data.height}]}>
+      <View key={data.group} style={styles.demo}>
         <View style={styles.demo_images}>
           {
             data.images.map((image, index) => {
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10
   },
   demo_text: {
-    marginTop: 12,
+    marginVertical: 12,
     paddingHorizontal: 16,
     fontSize: 18,
     fontWeight: 'bold'
