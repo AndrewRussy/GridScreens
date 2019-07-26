@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Dimensions, StyleSheet, Image, TouchableOpacity, Text, TextInput, Keyboard, Animated, UIManager, Platform, ScrollView } from 'react-native';
+import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 import { Actions } from 'react-native-router-flux';
 
