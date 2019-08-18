@@ -2,50 +2,61 @@ import React, { Component } from 'react';
 import { View, Dimensions, StyleSheet, Image, TouchableOpacity, Text, ScrollView } from 'react-native';
 
 import { Actions } from 'react-native-router-flux';
-
+// name, price, category
 class First extends Component {
 
   constructor() {
     super();
     this.state = {
       section1_images: [
-        require('../imgs/first/section1/image1.png'),
-        require('../imgs/first/section1/image2.png'),
-        require('../imgs/first/section1/image3.png'),
-        require('../imgs/first/section1/image1.png'),
-        require('../imgs/first/section1/image2.png'),
-        require('../imgs/first/section1/image3.png')
+     
+        require('../imgs/books/bookef.jpg'),
+        require('../imgs/books/born2barl.jpg'),
+        require('../imgs/books/fichbook.jpg'),
+        require('../imgs/books/born2barl.jpg'),
+        require('../imgs/books/bookef.jpg'),
+
+
       ],
       demoData: [
         {
           group: 0,
           images:[
-            require('../imgs/first/section2/demo1/demo1-1.png'),
-            require('../imgs/first/section2/demo1/demo1-2.png'),
-            require('../imgs/first/section2/demo1/demo1-3.png'),
-            require('../imgs/first/section2/demo1/demo1-4.png')
-          ]
+            require('../imgs/books/bookef.jpg'),
+          ], 
+          name: 'Nothing ', 
+          price: '$200', 
+          category: "Drama", 
         },
         {
           group: 1,
           images:[
-            require('../imgs/first/section2/demo2/demo2-1.png'),
-            require('../imgs/first/section2/demo2/demo2-2.png')
-          ]
+            require('../imgs/books/born2barl.jpg'),
+          ], 
+          name: "Born", 
+          price: '$200', 
+          category: "Story", 
         },
         {
           group: 2,
           images:[
-            require('../imgs/first/section2/demo3/demo3-1.png'),
-            require('../imgs/first/section2/demo3/demo3-2.png')
-          ]
+            require('../imgs/books/fichbook.jpg'),
+        
+          ],
+          name: "Fish", 
+          price: '$200', 
+          category: "Wirld", 
         },
         {
           group: 3,
           images:[
-            require('../imgs/first/section2/demo4/demo4-1.png'),
-            require('../imgs/first/section2/demo4/demo4-2.png')
-          ]
+         
+            require('../imgs/books/rose.jpg'),
+         
+          ],
+          name: "Sister", 
+          price: '$200', 
+          category: "People", 
         },
       ]
     }
@@ -54,11 +65,14 @@ class First extends Component {
   render() {
     return(
       <View style={styles.container}>
+        <Text style={styles.textBooks}>GridBooks</Text>
         <ScrollView>
+        <Text style={styles.treading}>Treading Books</Text>
           <ScrollView
             style={styles.section1}
             horizontal={true}
           >
+            
             {
               this.state.section1_images.map((image, index) => {
                 return(
@@ -99,20 +113,23 @@ class First extends Component {
 
   customDemo = (data) => {
     return(
-      <View key={data.group} style={styles.demo}>
+      <TouchableOpacity key={data.group} style={styles.demo}>
         <View style={styles.demo_images}>
           {
             data.images.map((image, index) => {
               return(
                 <View key={index} style={styles.demo_image}>
-                  <Image style={{width: '100%'}} source={image} />
+                  <Image style={{width: '100%', height: 200}} source={image} />
                 </View>
               )
             })
           }
         </View>
-        <Text style={styles.demo_text}>Demo{data.group+1} 😀</Text>
-      </View>
+        <Text style={styles.demo_text}> Name:{data.name}</Text>
+        <Text style={styles.demo_text}> Price:{data.price}</Text>
+        <Text style={styles.demo_text}> Category:{data.category}</Text>
+        
+      </TouchableOpacity>
     )
   }
 }
@@ -121,6 +138,15 @@ const styles = StyleSheet.create({
   container: {
    flex: 1,
    position: 'relative'
+  },
+  textBooks: {
+  textAlign: "center",
+  fontSize: 20,
+  fontWeight: 'bold'
+  },
+  treading: {
+    fontSize: 20,
+    fontWeight: 'bold'
   },
   section1: {
     marginTop: 32,
@@ -161,7 +187,8 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap'
   },
   demo_image: {
-    width: '50%',
+    width: '100%',
+    height: '100%'
   },
   pic_btn: {
     position: 'absolute',
